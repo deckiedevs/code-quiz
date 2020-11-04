@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+header {
+    text-align: center;
+    padding-top: 30px;
+}
+
+.card {
+    border: 1px solid grey;
+    box-shadow: 3px 3px 3px #ccc;
+    margin: 20px auto;
+    padding: 30px;
+    width: 75%;
+}
