@@ -44,10 +44,11 @@ var codeQuiz = [
 
 var cardEl = document.querySelector("#card");
 var startBtn = document.querySelector("#start-btn");
+var headerEl = document.querySelector("header");
+// var scoreSpan = document.querySelector("#score");
 
 // start quiz function
 var createQuiz = function() {
-
     document.querySelector("#instructions").remove();
 
     // creates container div for questions
@@ -99,6 +100,25 @@ var createQuiz = function() {
     btnD.className = "btn";
     btnD.id = "btn-d";
     choiceD.appendChild(btnD);
+    
+    scoreCounter();
+}
+
+var scoreCounter = function () {
+    var scoreDiv = document.createElement("div");
+    scoreDiv.className = "score";
+    headerEl.appendChild(scoreDiv);
+
+    var currentScore = 100;
+    var scoreInterval = setInterval(function() {
+        if (currentScore >= 0) {
+            scoreDiv.textContent = "Current score: " + currentScore;
+            currentScore--
+        }
+        else {
+            clearInterval(scoreInterval);
+        }
+    }, 1000);
 }
 
 startBtn.addEventListener("click", createQuiz)
