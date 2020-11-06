@@ -1,4 +1,3 @@
-// code quiz questions and answers array
 var codeQuiz = [
     {
         question: 'Test question 1', 
@@ -42,12 +41,26 @@ var codeQuiz = [
     }
 ]
 
-var cardEl = document.querySelector("#card");
-var startBtn = document.querySelector("#start-btn");
 var headerEl = document.querySelector("header");
+var scoreEl = document.querySelector(".score");
+var startBtn = document.querySelector("#start-btn");
+var quizEl = document.querySelector(".quiz-container");
+var endEl = document.querySelector(".end");
 var questionCounter = 0;
 var currentScore = 100;
-// var scoreSpan = document.querySelector("#score");
+
+var scoreCounter = function() {
+
+    var scoreInterval = setInterval(function() {
+        if (currentScore >= 0 && questionCounter < codeQuiz.length) {
+            scoreEl.textContent = "Current score: " + currentScore;
+            currentScore--
+        }
+        else {
+            clearInterval(scoreInterval);
+        }
+    }, 1000);
+}
 
 // start quiz function
 var createQuiz = function() {
@@ -56,12 +69,12 @@ var createQuiz = function() {
      // creates container div for questions
      var questionEl = document.createElement("div");
      questionEl.className = "question";
-     cardEl.appendChild(questionEl);
+     quizEl.appendChild(questionEl);
  
      // creates container div for answers
      var answersEl = document.createElement("div");
      answersEl.className = "answer-grid";
-     cardEl.appendChild(answersEl);
+     quizEl.appendChild(answersEl);
  
      // button A
      var choiceA = document.createElement("div");
@@ -110,7 +123,7 @@ var createQuiz = function() {
     //  feedback div
     var feedbackEl = document.createElement("div");
     feedbackEl.className = "feedback";
-    cardEl.appendChild(feedbackEl);
+    quizEl.appendChild(feedbackEl);
 
     nextQues(questionCounter);
     scoreCounter();
@@ -155,49 +168,20 @@ var checkAnswer = function(event) {
         nextQues(questionCounter);
     }
     else {
-        console.log("Stop quiz here")
+        endQuiz();
     }
 }
 
-var scoreCounter = function () {
-    var scoreDiv = document.createElement("div");
-    scoreDiv.className = "score";
-    headerEl.appendChild(scoreDiv);
-
-    var scoreInterval = setInterval(function() {
-        if (currentScore >= 0) {
-            scoreDiv.textContent = "Current score: " + currentScore;
-            currentScore--
-        }
-        else {
-            clearInterval(scoreInterval);
-        }
-    }, 1000);
+var endQuiz = function() {
+    document.querySelector(".quiz-container"). remove();
+    document.querySelector(".score"). remove();
+ 
+    endEl.innerHTML = "<p>Your final score is " + currentScore + ".</p>";
 }
 
 startBtn.addEventListener("click", createQuiz)
 
 /* PSEUDOCODE FOR QUIZ
-
-1. Quiz should be created using DOM manipulation.
-
-2. Create an array of questions and answer selections.
-
-3. Create functions to call on question array.
-
-    a. Use for loop to iterate through questions?
-
-4. Possible structure for quiz:
-
-    a. Quiz question div.
-
-    b. Answer choice div(s) with buttons.
-
-    c. Identify correct vs. incorrect answers using class attributes on the buttons?
-
-5. Deduct points (add to timer?) for wrong answers.
-
-6. Add timer function.
 
 7. Use local storage to save timer high scores.
 

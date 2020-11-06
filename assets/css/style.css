@@ -11,9 +11,9 @@ body {
 
 header {
     background-color: white;
-    border: 1px solid grey;
+    border: 1px solid #000;
     border-radius: 15px;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, .5);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .25);
     padding: 25px;
     margin: 50px auto 20px auto; 
     text-align: center;
@@ -22,12 +22,13 @@ header {
 
 .card {
     background-color: white;
-    border: 1px solid grey;
+    border: 1px solid #000;
     border-radius: 15px;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, .5);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .25);
     margin: 20px auto;
     padding: 50px;
     width: 50%;
+    height: 350px;
 }
 
 .card p {
@@ -41,10 +42,6 @@ header {
     grid-gap: 20px;
     justify-content: space-between;
     margin-top: 25px;
-}
-
-.answer-grid-item {
-    display: grid;
 }
 
 .start {
@@ -62,9 +59,9 @@ header {
     font-weight: bold;
 }
 
-#start-btn, #next-btn {
+#start-btn {
     width: 200px;
-    margin-top: 20px;
+    margin-top: 75px;
     padding: 20px 30px;
 }
 
@@ -81,4 +78,21 @@ header {
 
 .incorrect {
     background-color: red;
+}
+
+footer {
+    background-color: white;
+    border: 1px solid #000;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .25);
+    padding: 25px;
+    margin: 20px auto 20px auto; 
+    text-align: center;
+    width: 50%;
+}
+
+.scores-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
