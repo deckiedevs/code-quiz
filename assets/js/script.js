@@ -41,6 +41,7 @@ var codeQuiz = [
     }
 ]
 
+var background = document.querySelector("body");
 var headerEl = document.querySelector("header");
 var scoreEl = document.querySelector(".score");
 var startBtn = document.querySelector("#start-btn");
@@ -48,6 +49,7 @@ var quizEl = document.querySelector(".quiz-container");
 var endEl = document.querySelector(".end");
 var questionCounter = 0;
 var currentScore = 100;
+var highScores = [];
 
 var scoreCounter = function() {
 
@@ -149,16 +151,15 @@ var nextQues = function(index) {
 
 var checkAnswer = function(event) {
     var clickedBtn = event.target.getAttribute("value");
-    var backgroundColor = document.querySelector("body");
     var feedbackEl = document.querySelector(".feedback");
     
     if (clickedBtn === codeQuiz[questionCounter].answer) {
-        backgroundColor.className = "correct";
+        background.className = "correct";
         feedbackEl.textContent = "CORRECT!"
     }
     else {
         currentScore -= 5;
-        backgroundColor.className = "incorrect";
+        background.className = "incorrect";
         feedbackEl.textContent = "INCORRECT!"
     }
 
@@ -173,12 +174,65 @@ var checkAnswer = function(event) {
 }
 
 var endQuiz = function() {
+
     document.querySelector(".quiz-container"). remove();
     document.querySelector(".score"). remove();
+    background.removeAttribute("class");
  
-    endEl.innerHTML = "<p>Your final score is " + currentScore + ".</p>";
+    endEl.innerHTML = "<h2 class='end-title'>That's all she wrote!</h2><p>Your final score is " + currentScore + ".  Please enter your name!</p>";
+
+    var scoreForm = document.createElement("form");
+    scoreForm.id = "score-form";
+    endEl.appendChild(scoreForm);
+
+    var nameInput = document.createElement("input");
+    nameInput.setAttribute("type", "text");
+    nameInput.setAttribute("name", "player-name");
+    nameInput.setAttribute("placeholder", "Enter your name!");
+    scoreForm.appendChild(nameInput);
+
+    var nameBtn = document.createElement("button");
+    nameBtn.id = "name-btn"
+    nameBtn.textContent = "SUBMIT";
+    scoreForm.appendChild(nameBtn);
+
+    nameBtn.addEventListener("click", saveScore);
 }
 
+var saveScore = function() {
+    event.preventDefault()
+
+    var playerName = document.querySelector("input[name='player-name']").value;
+
+    if (!playerName) {
+        alert("Please enter your name!")
+    }
+    else {
+        var scoreObj = {
+            name: playerName,
+            score: currentScore
+        }
+    
+        highScores.push(scoreObj);
+        console.log(highScores);
+    }
+    
+    document.querySelector("#score-form").reset();
+    localStorage.setItem("scores", JSON.stringify(highScores));
+}
+
+var loadScores = function() { 
+    highScores = localStorage.getItem("scores");
+
+    if (!highScores) {
+        highScores = []
+        return false;
+    }
+
+    highScores = JSON.parse(highScores);
+}
+
+loadScores();
 startBtn.addEventListener("click", createQuiz)
 
 /* PSEUDOCODE FOR QUIZ
