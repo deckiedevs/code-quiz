@@ -9,6 +9,10 @@ body {
     line-height: 1.4;
 }
 
+a {
+    text-decoration: none;
+}
+
 header {
     background-color: white;
     border: 1px solid #000;
@@ -95,4 +99,15 @@ footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+}
+
+/* high score page styles */
+#score-card h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#score-table {
+    width: 50%;
+    margin: auto;
 }

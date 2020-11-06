@@ -219,6 +219,7 @@ var saveScore = function() {
     
     document.querySelector("#score-form").reset();
     localStorage.setItem("scores", JSON.stringify(highScores));
+    document.location.href = "highscore.html";
 }
 
 var loadScores = function() { 
@@ -234,25 +235,3 @@ var loadScores = function() {
 
 loadScores();
 startBtn.addEventListener("click", createQuiz)
-
-/* PSEUDOCODE FOR QUIZ
-
-7. Use local storage to save timer high scores.
-
-    a. Add option to enter name for high scores.
-
-8. Create high score list by loading saved storage data.
-
-9. Add styles to quiz.
-
-    a. Hover effects for answer choices.
-
-    b. General styles, time permitting.
-
-10. Other considerations:
-
-    a. Start/re-start quiz?
-
-    b. Make a static mock-up of the HTML elements needed to structure the quiz first.
-
-*/
