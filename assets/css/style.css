@@ -10,9 +10,10 @@ body {
 }
 
 header {
+    background-color: white;
     border: 1px solid grey;
     border-radius: 15px;
-    box-shadow: 3px 3px 3px #ccc;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, .5);
     padding: 25px;
     margin: 50px auto 20px auto; 
     text-align: center;
@@ -20,9 +21,10 @@ header {
 }
 
 .card {
+    background-color: white;
     border: 1px solid grey;
     border-radius: 15px;
-    box-shadow: 3px 3px 3px #ccc;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, .5);
     margin: 20px auto;
     padding: 50px;
     width: 50%;
@@ -64,4 +66,19 @@ header {
     width: 200px;
     margin-top: 20px;
     padding: 20px 30px;
+}
+
+.feedback {
+    margin-top: 40px;
+    font-size: 35px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.correct {
+    background-color: green;
+}
+
+.incorrect {
+    background-color: red;
 }
