@@ -179,19 +179,21 @@ var endQuiz = function() {
     document.querySelector(".score"). remove();
     background.removeAttribute("class");
  
-    endEl.innerHTML = "<h2 class='end-title'>That's all she wrote!</h2><p>Your final score is " + currentScore + ".  Please enter your name!</p>";
+    endEl.innerHTML = "<h2 class='end-title'>That's all she wrote!</h2><p>Your final score is " + currentScore + ".  Please enter your name.</p>";
 
     var scoreForm = document.createElement("form");
     scoreForm.id = "score-form";
     endEl.appendChild(scoreForm);
 
     var nameInput = document.createElement("input");
+    nameInput.className = "name-input";
     nameInput.setAttribute("type", "text");
     nameInput.setAttribute("name", "player-name");
-    nameInput.setAttribute("placeholder", "Enter your name!");
+    nameInput.setAttribute("placeholder", "ENTER YOUR NAME");
     scoreForm.appendChild(nameInput);
 
     var nameBtn = document.createElement("button");
+    nameBtn.className = "btn";
     nameBtn.id = "name-btn"
     nameBtn.textContent = "SUBMIT";
     scoreForm.appendChild(nameBtn);
@@ -214,12 +216,10 @@ var saveScore = function() {
         }
     
         highScores.push(scoreObj);
-        console.log(highScores);
+        document.querySelector("#score-form").reset();
+        localStorage.setItem("scores", JSON.stringify(highScores));
+        document.location.href = "highscore.html";
     }
-    
-    document.querySelector("#score-form").reset();
-    localStorage.setItem("scores", JSON.stringify(highScores));
-    document.location.href = "highscore.html";
 }
 
 var loadScores = function() { 

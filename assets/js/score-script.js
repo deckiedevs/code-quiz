@@ -6,6 +6,12 @@ var loadScores = function() {
 
     if (!highScores) {
         highScores = []
+
+        var noScores = document.createElement("div");
+        noScores.setAttribute("style", "text-align: center");
+        noScores.textContent = "There are no scores yet!  Play the quiz to add your score!"
+        document.querySelector("#score-card").appendChild(noScores);
+
         return false;
     }
 
@@ -40,9 +46,11 @@ var createScoreTable = function() {
     
         var scoreCell = document.createElement("td");
         scoreCell.className = "table-score-data";
+        scoreCell.setAttribute("style", "text-align: right")
         scoreCell.textContent = highScores[i].score;
         scoreRow.appendChild(scoreCell);
     }
+
 }
 
 loadScores();
