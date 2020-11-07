@@ -1,43 +1,43 @@
 var codeQuiz = [
     {
-        question: 'Test question 1', 
-        a: 'Answer 1A',
-        b: 'Answer 1B',
-        c: 'Answer 1C',
-        d: 'Answer 1D',
+        question: 'Which of the following is not a comparison operator?', 
+        a: '===',
+        b: '!=',
+        c: '<=',
+        d: '>=',
         answer: 'b'
     }, 
     {
-        question: 'Test question 2',
-        a: 'Answer 2A',
-        b: 'Answer 2B',
-        c: 'Answer 2C',
-        d: 'Answer 2D',
+        question: 'Which of the following is not a falsy value?',
+        a: 'null',
+        b: 'undefined',
+        c: '"0"',
+        d: 'NaN',
         answer: 'c'
     },
     {
-        question: 'Test question 3',
-        a: 'Answer 3A',
-        b: 'Answer 3B',
-        c: 'Answer 3C',
-        d: 'Answer 3D',
+        question: 'Which of the following is not a way to write a function?',
+        a: 'let myFunc = function() { ... };',
+        b: 'const myFunc = () => { ... };',
+        c: 'var myFunc() = function { ... };',
+        d: 'function myFunc() { ... };',
         answer: 'c'
     },
     {
-        question: 'Test question 4',
-        a: 'Answer 4A',
-        b: 'Answer 4B',
-        c: 'Answer 4C',
-        d: 'Answer 4D',
+        question: 'What type of data is "36"?',
+        a: 'undefined',
+        b: 'number',
+        c: 'boolean',
+        d: 'string',
         answer: 'd'
     },
     {
-        question: 'Test question 5',
-        a: 'Answer 5A',
-        b: 'Answer 5B',
-        c: 'Answer 5C',
-        d: 'Answer 5D',
-        answer: 'b'
+        question: 'What will parseInt(9.57) return?',
+        a: '9',
+        b: '9.57',
+        c: '9.6',
+        d: '10',
+        answer: 'a'
     }
 ]
 
