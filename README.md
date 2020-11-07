@@ -24,6 +24,7 @@ An interactive quiz that tests the user's knowledge of JavaScript topics.
 ## Task List
 - [ ] Add more questions.
 - [ ] Add media query optimization.
+- [ ] Refactor code.
 
 ## Contribution
 * Color palette inspired by [Color Hunt](https://colorhunt.co/).
