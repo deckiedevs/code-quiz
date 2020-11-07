@@ -42,8 +42,6 @@ var codeQuiz = [
 ]
 
 var background = document.querySelector("body");
-var headerEl = document.querySelector("header");
-var cardEl = document.querySelector(".card");
 var startBtn = document.querySelector("#start-btn");
 var quizEl = document.querySelector(".quiz-container");
 var endEl = document.querySelector(".end");
@@ -52,8 +50,8 @@ var questionCounter = 0;
 var currentScore = 99;
 var highScores = [];
 
+// starts score counter upon quiz start
 var scoreCounter = function() {
-
     scoreEl.textContent = "Current score: 100"
 
     var scoreInterval = setInterval(function() {
@@ -68,77 +66,15 @@ var scoreCounter = function() {
     }, 1000);
 }
 
-// start quiz function
 var createQuiz = function() {
     document.querySelector("#instructions").remove();
-
-    var questionHeader = document.createElement("h2");
-    questionHeader.className = "question-header";
-    quizEl.appendChild(questionHeader);
-
-     // creates container div for questions
-     var questionEl = document.createElement("div");
-     questionEl.className = "question";
-     quizEl.appendChild(questionEl);
- 
-     // creates container div for answers
-     var answersEl = document.createElement("div");
-     answersEl.className = "answer-grid";
-     quizEl.appendChild(answersEl);
- 
-     // button A
-     var choiceA = document.createElement("div");
-     choiceA.className = "answer-grid-item";
-     answersEl.appendChild(choiceA);
- 
-     var btnA = document.createElement("button");
-     btnA.className = "btn";
-     btnA.id = "btn-a";
-     btnA.setAttribute("value", "a");
-     choiceA.appendChild(btnA);
- 
-     // button B
-     var choiceB = document.createElement("div");
-     choiceB.className = "answer-grid-item";
-     answersEl.appendChild(choiceB);
- 
-     var btnB = document.createElement("button");
-     btnB.className = "btn";
-     btnB.id = "btn-b";
-     btnB.setAttribute("value", "b");
-     choiceB.appendChild(btnB);
- 
-     // button C
-     var choiceC = document.createElement("div");
-     choiceC.className = "answer-grid-item";
-     answersEl.appendChild(choiceC);
- 
-     var btnC = document.createElement("button");
-     btnC.className = "btn";
-     btnC.id = "btn-c";
-     btnC.setAttribute("value", "c");
-     choiceC.appendChild(btnC);
- 
-     // button D
-     var choiceD = document.createElement("div");
-     choiceD.className = "answer-grid-item";
-     answersEl.appendChild(choiceD);
- 
-     var btnD = document.createElement("button");
-     btnD.className = "btn";
-     btnD.id = "btn-d";
-     btnD.setAttribute("value", "d");
-     choiceD.appendChild(btnD);
-
-    //  feedback div
-    var feedbackEl = document.createElement("div");
-    feedbackEl.className = "feedback hide";
-    cardEl.prepend(feedbackEl);
+    quizEl.classList.remove("hide")
 
     nextQues(questionCounter);
     scoreCounter();
 }
 
+// iterates through questions and answers
 var nextQues = function(index) {
     var questionHeader = document.querySelector(".question-header");
     var questionEl = document.querySelector(".question");
@@ -146,7 +82,6 @@ var nextQues = function(index) {
     var btnB = document.getElementById("btn-b");
     var btnC = document.getElementById("btn-c");
     var btnD = document.getElementById("btn-d");
-    var allBtns = document.querySelector(".answer-grid"); 
 
     questionHeader.textContent = "Question #" + parseInt(index + 1)
     questionEl.textContent = codeQuiz[index].question;
@@ -155,16 +90,20 @@ var nextQues = function(index) {
     btnC.textContent = codeQuiz[index].c;
     btnD.textContent = codeQuiz[index].d;
 
-    allBtns.addEventListener("click", checkAnswer);
+    btnA.addEventListener("click", checkAnswer);
+    btnB.addEventListener("click", checkAnswer);
+    btnC.addEventListener("click", checkAnswer);
+    btnD.addEventListener("click", checkAnswer);
 }
 
 var checkAnswer = function(event) {
     var clickedBtn = event.target.getAttribute("value");
     var feedbackEl = document.querySelector(".feedback");
+    feedbackEl.classList.remove("hide");
     
+    // checks button value against correct answer in array
     if (clickedBtn === codeQuiz[questionCounter].answer) {
         background.className = "correct";
-        feedbackEl.classList.remove("hide");
         feedbackEl.textContent = "CORRECT!"
     }
     else {
@@ -188,9 +127,8 @@ var checkAnswer = function(event) {
 }
 
 var endQuiz = function() {
-
-    document.querySelector(".quiz-container"). remove();
-    document.querySelector(".score"). remove();
+    quizEl.remove();
+    scoreEl.remove();
  
     endEl.innerHTML = "<h2 class='end-title'>That's all she wrote!</h2><p>Your final score is " + currentScore + ".  Please enter your name.</p>";
 
@@ -239,7 +177,7 @@ var loadScores = function() {
     highScores = localStorage.getItem("scores");
 
     if (!highScores) {
-        highScores = []
+        highScores = [];
         return false;
     }
 
