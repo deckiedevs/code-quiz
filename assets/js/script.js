@@ -49,10 +49,12 @@ var quizEl = document.querySelector(".quiz-container");
 var endEl = document.querySelector(".end");
 var scoreEl = document.querySelector(".score");
 var questionCounter = 0;
-var currentScore = 100;
+var currentScore = 99;
 var highScores = [];
 
 var scoreCounter = function() {
+
+    scoreEl.textContent = "Current score: 100"
 
     var scoreInterval = setInterval(function() {
         if (currentScore > 0 && questionCounter < codeQuiz.length) {
@@ -168,6 +170,7 @@ var checkAnswer = function(event) {
     else {
         if (currentScore >= 5) {
             currentScore -= 5;
+            scoreEl.textContent = "Current score: " + currentScore;
             }
         background.className = "incorrect";
         feedbackEl.classList.remove("hide");
