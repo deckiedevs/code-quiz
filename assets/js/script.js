@@ -62,8 +62,8 @@ var scoreCounter = function() {
             currentScore--
         }
         else {
-            scoreEl.textContent = "Current score: 0";
             clearInterval(scoreInterval);
+            endQuiz();
         }
     }, 1000);
 }
