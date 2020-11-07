@@ -43,10 +43,11 @@ var codeQuiz = [
 
 var background = document.querySelector("body");
 var headerEl = document.querySelector("header");
-var scoreEl = document.querySelector(".score");
+var cardEl = document.querySelector(".card");
 var startBtn = document.querySelector("#start-btn");
 var quizEl = document.querySelector(".quiz-container");
 var endEl = document.querySelector(".end");
+var scoreEl = document.querySelector(".score");
 var questionCounter = 0;
 var currentScore = 100;
 var highScores = [];
@@ -54,11 +55,12 @@ var highScores = [];
 var scoreCounter = function() {
 
     var scoreInterval = setInterval(function() {
-        if (currentScore >= 0 && questionCounter < codeQuiz.length) {
+        if (currentScore > 0 && questionCounter < codeQuiz.length) {
             scoreEl.textContent = "Current score: " + currentScore;
             currentScore--
         }
         else {
+            scoreEl.textContent = "Current score: 0";
             clearInterval(scoreInterval);
         }
     }, 1000);
@@ -67,6 +69,10 @@ var scoreCounter = function() {
 // start quiz function
 var createQuiz = function() {
     document.querySelector("#instructions").remove();
+
+    var questionHeader = document.createElement("h2");
+    questionHeader.className = "question-header";
+    quizEl.appendChild(questionHeader);
 
      // creates container div for questions
      var questionEl = document.createElement("div");
@@ -124,14 +130,15 @@ var createQuiz = function() {
 
     //  feedback div
     var feedbackEl = document.createElement("div");
-    feedbackEl.className = "feedback";
-    quizEl.appendChild(feedbackEl);
+    feedbackEl.className = "feedback hide";
+    cardEl.prepend(feedbackEl);
 
     nextQues(questionCounter);
     scoreCounter();
 }
 
 var nextQues = function(index) {
+    var questionHeader = document.querySelector(".question-header");
     var questionEl = document.querySelector(".question");
     var btnA = document.getElementById("btn-a");
     var btnB = document.getElementById("btn-b");
@@ -139,7 +146,7 @@ var nextQues = function(index) {
     var btnD = document.getElementById("btn-d");
     var allBtns = document.querySelector(".answer-grid"); 
 
-
+    questionHeader.textContent = "Question #" + parseInt(index + 1)
     questionEl.textContent = codeQuiz[index].question;
     btnA.textContent = codeQuiz[index].a;
     btnB.textContent = codeQuiz[index].b;
@@ -155,11 +162,15 @@ var checkAnswer = function(event) {
     
     if (clickedBtn === codeQuiz[questionCounter].answer) {
         background.className = "correct";
+        feedbackEl.classList.remove("hide");
         feedbackEl.textContent = "CORRECT!"
     }
     else {
-        currentScore -= 5;
+        if (currentScore >= 5) {
+            currentScore -= 5;
+            }
         background.className = "incorrect";
+        feedbackEl.classList.remove("hide");
         feedbackEl.textContent = "INCORRECT!"
     }
 
@@ -177,7 +188,6 @@ var endQuiz = function() {
 
     document.querySelector(".quiz-container"). remove();
     document.querySelector(".score"). remove();
-    background.removeAttribute("class");
  
     endEl.innerHTML = "<h2 class='end-title'>That's all she wrote!</h2><p>Your final score is " + currentScore + ".  Please enter your name.</p>";
 
