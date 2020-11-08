@@ -2,7 +2,7 @@ var codeQuiz = [
     {
         question: 'Which of the following is not a comparison operator?', 
         a: '===',
-        b: '!=',
+        b: '!<',
         c: '<=',
         d: '>=',
         answer: 'b'

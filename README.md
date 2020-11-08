@@ -23,7 +23,7 @@ An interactive quiz that tests the user's knowledge of JavaScript topics.
 
 ## Task List
 - [ ] Add more questions.
-- [ ] Add media query optimization.
+- [x] Add media query optimization.
 - [ ] Refactor code.
 
 ## Contribution

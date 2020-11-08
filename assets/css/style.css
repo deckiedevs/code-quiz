@@ -42,10 +42,6 @@ header {
     margin-top: 15px;
 }
 
-.start {
-    text-align: center;
-}
-
 .btn {
     width: 100%;
     padding: 20px 50px;
@@ -63,11 +59,19 @@ header {
     background-color: #FFA564;
 }
 
+/* instruction card */
+
+.start {
+    text-align: center;
+}
+
 #start-btn {
     width: 200px;
     margin-top: 50px;
     padding: 20px auto;
 }
+
+/* quiz card */
 
 .answer-grid {
     display: grid;
@@ -110,6 +114,8 @@ header {
 .hide {
     display: none;
 }
+
+/* end game card */
 
 .end {
     text-align: center;
@@ -168,4 +174,91 @@ footer {
 
 #score-table td {
     padding: 5px;
+}
+
+/* media query styles */
+@media screen and (max-width: 768px) {
+    header {
+        padding: 15px;
+        margin: 30px auto 15px auto; 
+        width: 80%;
+    }
+    
+    .card {
+        margin: 15px auto;
+        padding: 25px 30px;
+        width: 80%;
+    }
+    
+    .card p {
+        margin-top: 10px;
+    }
+    
+    .name-input {
+        width: 50%;
+    }
+
+    #name-btn {
+        width: 50%;
+        padding: 15px;
+    }
+    
+    footer {
+        width: 80%;
+    }
+
+    #score-table {
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    header {
+        width: 90%;
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    .card {
+        margin: 15px auto;
+        padding: 15px 20px;
+        width: 90%;
+    }
+
+    .card h2 {
+        font-size: 20px;
+    }
+    
+    .card p {
+        margin-top: 10px;
+    }
+
+    .btn {
+        padding: 20px 10px;
+    }
+
+    #start-btn {
+        margin-top: 30px;
+    }
+
+    .answer-grid {
+        grid-template: repeat(4, 1fr) / 1fr;
+        grid-gap: 15px;
+    }
+
+    .name-input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+    }
+    
+    #name-btn {
+        width: 100%;
+        padding: 10px;
+    }
+    
+    footer {
+        width: 90%;
+        padding: 10px;
+    }
 }
